@@ -1,0 +1,336 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import LogList from "../components/LogList.astro";
+import Timeline from "../components/Timeline.astro";
+import ContactForm from "../components/ContactForm.astro";
+import { getLogEntries } from "../lib/log";
+import { goal } from "../data/roadmap";
+import { hasValue, site } from "../data/site";
+
+const entries = await getLogEntries();
+const latestEntries = entries.slice(0, 3);
+const linkedin = site.linkedin.trim();
+const email = site.email.trim();
+const formEndpoint = (import.meta.env.PUBLIC_FORM_ENDPOINT ?? "").trim();
+const showForm = formEndpoint.length > 0;
+const hasContact = showForm || hasValue(linkedin) || hasValue(email);
+const hasEntries = entries.length > 0;
+---
+
+<BaseLayout
+  title={`${site.name} — an operating layer for bus operators`}
+  description={site.description}
+>
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="hero-media" aria-hidden="true">
+      <video
+        class="hero-video"
+        data-hero-video
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="auto"
+        poster="/hero-poster.jpg"
+        width="514"
+        height="342"
+      >
+        <source src="/hero.mp4" type="video/mp4" />
+      </video>
+    </div>
+    <div class="hero-wash" aria-hidden="true"></div>
+
+    <div class="container hero-inner">
+      <div class="hero-copy">
+        <p class="eyebrow">AI operating layer for bus operators</p>
+        <h1 id="hero-title">
+          One clear view of what needs <em>attention.</em>
+        </h1>
+        <p class="hero-lead">
+          An operating layer for Indian bus and road-logistics operators. It
+          connects the tools they already use, shows what needs attention, and
+          helps staff fix it — with a human approving anything risky.
+        </p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="#building">
+            See how it works
+          </a>
+          <a class="button button-quiet" href="/log/">Read the build log</a>
+        </div>
+      </div>
+      <p class="hero-note">Built in public · No tracking cookies</p>
+    </div>
+  </section>
+
+  <section id="building" class="section" aria-labelledby="building-title">
+    <div class="container">
+      <div class="section-head">
+        <p class="section-label"><span>01</span> What it does</p>
+        <h2 id="building-title">
+          Connect first. Then make the work visible.
+        </h2>
+        <p class="section-intro">
+          Not a replacement for the software operators already use — a layer
+          that connects it, shows the gaps, and helps close them safely.
+        </p>
+      </div>
+
+      <ol class="steps">
+        <li>
+          <div class="step-top">
+            <span class="step-number">01</span>
+            <h3 class="step-title">Connect</h3>
+          </div>
+          <p>
+            Bring in trip, booking, and document data from what operators can
+            already export — CSV, Excel, email, and PDFs. Add a direct
+            integration only where a real API exists.
+          </p>
+        </li>
+        <li>
+          <div class="step-top">
+            <span class="step-number">02</span>
+            <h3 class="step-title">See</h3>
+          </div>
+          <p>
+            Put the records in one place and show the mismatches: a refund that
+            is stuck, a document close to expiry, a trip that disagrees with the
+            message a passenger received.
+          </p>
+        </li>
+        <li>
+          <div class="step-top">
+            <span class="step-number">03</span>
+            <h3 class="step-title">Fix</h3>
+          </div>
+          <p>
+            Suggest the next step with evidence. Staff approve anything risky —
+            refunds, fare changes, cancellations, mass messages — and the rules
+            are checked again before it runs.
+          </p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="why" class="section section-surface" aria-labelledby="why-title">
+    <div class="container">
+      <div class="section-head">
+        <p class="section-label"><span>02</span> Why</p>
+        <h2 id="why-title">
+          The work is spread everywhere. The picture isn’t.
+        </h2>
+        <p class="section-intro">
+          The information exists. The problem is that nobody has the full picture
+          at the moment they need it.
+        </p>
+      </div>
+
+      <div class="why-grid">
+        <div class="why-copy">
+          <p class="why-lead">
+            A bus operator’s day is spread across a ticket system, a
+            spreadsheet, an inbox, and a phone.
+          </p>
+          <p>
+            When a cancellation message goes out but the refund doesn’t, support
+            has to reconstruct the story by hand. When an insurance paper or
+            permit is close to expiry, it is easy to miss until it becomes a
+            problem.
+          </p>
+          <p>
+            The aim is simple: make the facts visible in the right order, show
+            where they disagree, and suggest the next step without hiding the
+            evidence.
+          </p>
+        </div>
+
+        <div class="why-aside">
+          <div class="why-block">
+            <h3>Who it helps</h3>
+            <p>
+              The owner, the support desk, the finance team, and the fleet
+              manager at small and mid-sized operators — the people who
+              reconstruct what happened and decide what to do next.
+            </p>
+          </div>
+          <div class="why-block">
+            <h3>What I want to learn</h3>
+            <p>
+              Whether a small team can build software operators actually trust.
+              Not a demo that looks clever in a meeting. Something that shows its
+              evidence, asks before it acts, and earns a place in a daily
+              workflow.
+            </p>
+          </div>
+          <div class="why-block">
+            <h3>What this is not</h3>
+            <p>
+              A replacement for the tools operators already use. The first
+              promise is to connect them and make the work visible. Replacing
+              something only makes sense if it is clearly better.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="plan" class="section" aria-labelledby="plan-title">
+    <div class="container">
+      <div class="section-head">
+        <p class="section-label"><span>03</span> Plan</p>
+        <h2 id="plan-title">What progress looks like.</h2>
+        <p class="section-intro">
+          A working plan in seven stages. The order matters; the dates are not
+          promises.
+        </p>
+      </div>
+
+      <div class="goal-card">
+        <p class="goal-kicker">The goal</p>
+        <p class="goal-text">{goal}</p>
+      </div>
+      <div class="plan-meta">
+        <p>A working plan, not a promise.</p>
+        <p>Stages update as the work moves.</p>
+      </div>
+
+      <Timeline />
+    </div>
+  </section>
+
+  <section
+    id="approach"
+    class="section section-surface"
+    aria-labelledby="approach-title"
+  >
+    <div class="container">
+      <div class="section-head">
+        <p class="section-label"><span>04</span> How I work</p>
+        <h2 id="approach-title">A few rules I don’t want to lose.</h2>
+        <p class="section-intro">
+          The product can change. These are the constraints that keep it honest.
+        </p>
+      </div>
+
+      <ol class="principles">
+        <li>
+          <span class="principle-number">01</span>
+          <div>
+            <h3 class="principle-title">Connect first.</h3>
+            <p class="principle-copy">
+              Start with the tools and files operators already have. Migration
+              is a last resort, not a first step.
+            </p>
+          </div>
+        </li>
+        <li>
+          <span class="principle-number">02</span>
+          <div>
+            <h3 class="principle-title">Show the evidence.</h3>
+            <p class="principle-copy">
+              Every answer should point to the record behind it. Keep what is
+              confirmed separate from what is guessed, and say when something is
+              missing.
+            </p>
+          </div>
+        </li>
+        <li>
+          <span class="principle-number">03</span>
+          <div>
+            <h3 class="principle-title">Automate the safe parts.</h3>
+            <p class="principle-copy">
+              Reminders, checks, and summaries can run on their own. Money and
+              permissions stay in backend code with rules that can be tested.
+            </p>
+          </div>
+        </li>
+        <li>
+          <span class="principle-number">04</span>
+          <div>
+            <h3 class="principle-title">A human approves risky actions.</h3>
+            <p class="principle-copy">
+              Refunds, fare changes, cancellations, and mass messages wait for a
+              person. The rules are checked again at approval time.
+            </p>
+          </div>
+        </li>
+        <li>
+          <span class="principle-number">05</span>
+          <div>
+            <h3 class="principle-title">Test before trusting.</h3>
+            <p class="principle-copy">
+              Keep a fixed set of realistic problem cases. Rerun them when the
+              model or prompt changes. A good demo is not evidence.
+            </p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  {
+    hasEntries && (
+      <section id="log" class="section" aria-labelledby="log-title">
+        <div class="container">
+          <div class="section-head">
+            <p class="section-label">Build log</p>
+            <h2 id="log-title">Newest first.</h2>
+            <p class="section-intro">
+              Short updates on what I build, what breaks, and what I learn.
+            </p>
+          </div>
+          <LogList entries={latestEntries} />
+          <p class="section-more">
+            <a class="text-link" href="/log/">All entries →</a>
+          </p>
+        </div>
+      </section>
+    )
+  }
+
+  {
+    hasContact && (
+      <section
+        id="connect"
+        class="section section-surface"
+        aria-labelledby="connect-title"
+      >
+        <div class="container contact-grid connect-grid">
+          <div class="connect-copy">
+            <p class="section-label">Connect</p>
+            <h2 id="connect-title">Say hello, or tell me what I’m missing.</h2>
+            <p class="section-intro">
+              Suggestions, corrections, or a quick hello — send a note. Please
+              don’t include passenger names, phone numbers, or booking details.
+            </p>
+
+            {(hasValue(linkedin) || hasValue(email)) && (
+              <ul class="contact-links">
+                {hasValue(linkedin) && (
+                  <li>
+                    <span class="contact-label">LinkedIn</span>
+                    <span class="contact-value">
+                      <a href={linkedin} rel="me">{site.name} on LinkedIn</a>
+                    </span>
+                  </li>
+                )}
+                {hasValue(email) && (
+                  <li>
+                    <span class="contact-label">Email</span>
+                    <span class="contact-value">
+                      <a href={`mailto:${email}`}>{email}</a>
+                    </span>
+                  </li>
+                )}
+              </ul>
+            )}
+          </div>
+
+          {showForm && <ContactForm />}
+        </div>
+      </section>
+    )
+  }
+</BaseLayout>

@@ -1,0 +1,54 @@
+---
+import type { LogEntry } from "../lib/log";
+import { formatDate, isoDate, logPath } from "../lib/log";
+
+interface Props {
+  entries: LogEntry[];
+  emptyMessage?: string;
+  headingLevel?: 2 | 3;
+}
+
+const {
+  entries,
+  emptyMessage = "No entries yet. The first real update will appear here.",
+  headingLevel = 3,
+} = Astro.props;
+
+const Heading = `h${headingLevel}` as "h2" | "h3";
+---
+
+{
+  entries.length === 0 ? (
+    <p class="empty-state">{emptyMessage}</p>
+  ) : (
+    <ol class="log-list">
+      {entries.map((entry) => (
+        <li class="log-item">
+          <article>
+            <div class="log-meta">
+              <time datetime={isoDate(entry.data.date)}>
+                {formatDate(entry.data.date)}
+              </time>
+              {entry.data.draft && (
+                <span class="badge-draft" title="Draft — excluded from the RSS feed">
+                  Draft
+                </span>
+              )}
+            </div>
+            <Heading class="log-title">
+              <a href={logPath(entry)}>{entry.data.title}</a>
+            </Heading>
+            <p class="log-summary">{entry.data.summary}</p>
+            {entry.data.tags.length > 0 && (
+              <ul class="tags" aria-label="Tags">
+                {entry.data.tags.map((tag) => (
+                  <li>#{tag}</li>
+                ))}
+              </ul>
+            )}
+          </article>
+        </li>
+      ))}
+    </ol>
+  )
+}

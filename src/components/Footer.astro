@@ -1,0 +1,31 @@
+---
+import { hasValue, site } from "../data/site";
+
+const year = new Date().getFullYear();
+const linkedin = site.linkedin.trim();
+const email = site.email.trim();
+---
+
+<footer class="site-footer">
+  <div class="container footer-top">
+    <p class="footer-brand">{site.name}<span aria-hidden="true">.</span></p>
+    <p class="footer-tagline">
+      An operating layer for Indian bus and road-logistics operators. Built in
+      public, with the evidence in view.
+    </p>
+  </div>
+  <div class="container footer-bottom">
+    <p class="footer-note">© {year} {site.name}. No tracking cookies.</p>
+    <ul class="footer-links">
+      <li><a href="/#building">Product</a></li>
+      <li><a href="/#plan">Plan</a></li>
+      <li><a href="/log/">Build log</a></li>
+      <li><a href="/rss.xml">RSS</a></li>
+      {hasValue(linkedin) && (
+        <li><a href={linkedin} rel="me">LinkedIn</a></li>
+      )}
+      {hasValue(email) && <li><a href={`mailto:${email}`}>Email</a></li>}
+      <li><a href="#main">Back to top</a></li>
+    </ul>
+  </div>
+</footer>

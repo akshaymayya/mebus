@@ -1,0 +1,23 @@
+---
+import { hasValue, site } from "../data/site";
+
+const endpoint = (import.meta.env.PUBLIC_FORM_ENDPOINT ?? "").trim();
+const hasContact =
+  endpoint.length > 0 || hasValue(site.email) || hasValue(site.linkedin);
+---
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="/">{site.name}<span class="brand-dot">.</span></a>
+    <nav class="site-nav" aria-label="Primary">
+      <ul>
+        <li><a href="/#building">Product</a></li>
+        <li><a href="/#why">Why</a></li>
+        <li><a href="/#plan">Plan</a></li>
+        <li><a href="/log/">Log</a></li>
+        {hasContact && <li><a href="/#connect">Connect</a></li>}
+      </ul>
+    </nav>
+    <a class="header-cta" href="/log/">Follow the build</a>
+  </div>
+</header>

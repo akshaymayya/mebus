@@ -1,0 +1,21 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { site } from "../data/site";
+---
+
+<BaseLayout title={`Page not found — ${site.name}`} description="That page isn’t here.">
+  <section class="page-header">
+    <div class="container">
+      <p class="eyebrow">404</p>
+      <h1>That page isn’t here.</h1>
+      <p class="section-intro">
+        The link may be old, or the page may have moved. The home page is the
+        best place to pick up the thread.
+      </p>
+      <div class="hero-actions">
+        <a class="button button-primary" href="/">Back home</a>
+        <a class="button button-quiet" href="/log/">Read the build log</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

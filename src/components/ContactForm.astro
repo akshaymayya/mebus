@@ -1,0 +1,120 @@
+---
+const endpoint = (import.meta.env.PUBLIC_FORM_ENDPOINT ?? "").trim();
+const accessKey = (import.meta.env.PUBLIC_FORM_ACCESS_KEY ?? "").trim();
+const configured = endpoint.length > 0;
+---
+
+{
+  configured && (
+    <div class="contact-form-wrap">
+      <form
+        class="contact-form"
+        method="POST"
+        action={endpoint}
+        aria-label="Send a message or suggestion"
+        data-contact-form
+        data-endpoint={endpoint}
+      >
+        <input
+          type="hidden"
+          name="_subject"
+          value="New message from your website"
+        />
+        <input
+          type="hidden"
+          name="subject"
+          value="New message from your website"
+        />
+        {accessKey && (
+          <input type="hidden" name="access_key" value={accessKey} />
+        )}
+
+        <div class="field">
+          <label for="name">Name <span class="optional">optional</span></label>
+          <input
+            id="name"
+            name="name"
+            type="text"
+            maxlength="80"
+            autocomplete="name"
+          />
+        </div>
+
+        <div class="field">
+          <label for="email">Email</label>
+          <input
+            id="email"
+            name="email"
+            type="email"
+            maxlength="254"
+            autocomplete="email"
+            inputmode="email"
+            required
+          />
+        </div>
+
+        <div class="field">
+          <label for="message">Message</label>
+          <textarea
+            id="message"
+            name="message"
+            rows="6"
+            maxlength="2000"
+            required
+            aria-describedby="message-help"
+          ></textarea>
+          <p class="field-meta" id="message-help">
+            <span data-message-count>0</span>&nbsp;/&nbsp;2000 characters
+          </p>
+        </div>
+
+        <div class="honeypot" aria-hidden="true">
+          <label for="website">Leave this field empty</label>
+          <input
+            id="website"
+            name="_gotcha"
+            type="text"
+            tabindex="-1"
+            autocomplete="off"
+          />
+          <input
+            type="checkbox"
+            name="botcheck"
+            tabindex="-1"
+            autocomplete="off"
+          />
+        </div>
+
+        <button class="button button-primary" type="submit" data-submit>
+          Send message
+        </button>
+
+        <div
+          class="form-status is-success"
+          role="status"
+          aria-live="polite"
+          data-form-success
+          hidden
+        ></div>
+        <div
+          class="form-status is-error"
+          role="alert"
+          data-form-error
+          hidden
+        ></div>
+
+        <p class="form-privacy">
+          I read every message. I may share a message publicly only if I choose
+          to; otherwise it stays private. Please don’t include passenger names,
+          phone numbers, or booking details.
+        </p>
+      </form>
+    </div>
+  )
+}
+
+<script>
+  import { setupContactForm } from "../scripts/contact";
+
+  setupContactForm();
+</script>

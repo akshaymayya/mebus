@@ -1,0 +1,35 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import LogList from "../../components/LogList.astro";
+import { getLogEntries } from "../../lib/log";
+import { site } from "../../data/site";
+
+const entries = await getLogEntries();
+---
+
+<BaseLayout
+  title={`Build log — ${site.name}`}
+  description="Notes from building an AI operating layer for Indian bus and logistics operators. What ships, what breaks, and what I learn."
+>
+  <section class="page-header">
+    <div class="container">
+      <p class="eyebrow">Build log</p>
+      <h1>Notes from the work.</h1>
+      <p class="section-intro">
+        A working record of what ships, what breaks, and what I learn. Every
+        update appears newest first. Drafts stay out of the feed.
+      </p>
+    </div>
+  </section>
+
+  <div class="container entry-body">
+    <LogList
+      entries={entries}
+      headingLevel={2}
+      emptyMessage="No entries yet. The first update will appear here when there is something real to report."
+    />
+    <p class="section-more">
+      <a class="text-link" href="/#plan">See the plan →</a>
+    </p>
+  </div>
+</BaseLayout>
