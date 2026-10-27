@@ -1,5 +1,7 @@
 ---
-const endpoint = (import.meta.env.PUBLIC_FORM_ENDPOINT ?? "").trim();
+import { formEndpoint } from "../data/contact";
+
+const endpoint = formEndpoint;
 const accessKey = (import.meta.env.PUBLIC_FORM_ACCESS_KEY ?? "").trim();
 const configured = endpoint.length > 0;
 ---

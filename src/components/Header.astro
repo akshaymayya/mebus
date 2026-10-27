@@ -1,9 +1,9 @@
 ---
+import { formEndpoint } from "../data/contact";
 import { hasValue, site } from "../data/site";
 
-const endpoint = (import.meta.env.PUBLIC_FORM_ENDPOINT ?? "").trim();
 const hasContact =
-  endpoint.length > 0 || hasValue(site.email) || hasValue(site.linkedin);
+  formEndpoint.length > 0 || hasValue(site.email) || hasValue(site.linkedin);
 ---
 
 <header class="site-header">

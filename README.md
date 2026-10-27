@@ -55,7 +55,7 @@ Optional settings are listed in [PLACEHOLDERS.md](./PLACEHOLDERS.md).
 | Variable | Required | Purpose |
 | --- | --- | --- |
 | `SITE_URL` | Yes for deploy | Public URL used for canonical links, Open Graph, RSS, sitemap, and `robots.txt`. No trailing slash. |
-| `PUBLIC_FORM_ENDPOINT` | For the form | Formspree form URL or Web3Forms endpoint. The contact form is hidden until this is set. |
+| `PUBLIC_FORM_ENDPOINT` | No | Optional override for the built-in Formspree endpoint. Use a different Formspree form URL or the Web3Forms endpoint. |
 | `PUBLIC_FORM_ACCESS_KEY` | Web3Forms only | Web3Forms access key. It is public by design. Leave blank for Formspree. |
 | `PUBLIC_ANALYTICS` | No | `off` (default), `plausible`, or `cloudflare`. |
 | `PUBLIC_ANALYTICS_DOMAIN` | Plausible only | The domain registered with Plausible. |
@@ -97,12 +97,12 @@ For images, put the file in `public/images/` and use a path such as `/images/my-
 
 ## Contact form
 
-The form sits in the connect section immediately above the footer and posts directly to a form service. It has a honeypot (`_gotcha` plus Web3Forms' `botcheck`), client-side length limits, and clear success and error states. It stays hidden until `PUBLIC_FORM_ENDPOINT` is set.
+The form sits in the connect section immediately above the footer and posts directly to a form service. It has a honeypot (`_gotcha` plus Web3Forms' `botcheck`), client-side length limits, and clear success and error states. It uses the built-in Formspree endpoint by default.
 
 **Formspree**
 
 1. Create a form at [formspree.io](https://formspree.io).
-2. Copy the form endpoint (`https://formspree.io/f/...`) into `PUBLIC_FORM_ENDPOINT`.
+2. To use a different form, set `PUBLIC_FORM_ENDPOINT` to its endpoint (`https://formspree.io/f/...`).
 3. Leave `PUBLIC_FORM_ACCESS_KEY` empty.
 
 **Web3Forms**
@@ -111,7 +111,7 @@ The form sits in the connect section immediately above the footer and posts dire
 2. Set `PUBLIC_FORM_ENDPOINT=https://api.web3forms.com/submit`.
 3. Set `PUBLIC_FORM_ACCESS_KEY` to the key.
 
-The endpoint is public information, but it is still kept out of source and supplied through the environment. If you switch to a different form service, update `form-action` and `connect-src` in `public/_headers` and `vercel.json`.
+The built-in endpoint is public information. If you switch to a different form service, update `form-action` and `connect-src` in `public/_headers` and `vercel.json`.
 
 ## Analytics
 
@@ -149,7 +149,7 @@ Off by default. Set `PUBLIC_ANALYTICS=plausible` with `PUBLIC_ANALYTICS_DOMAIN`,
 
 ## Security notes
 
-- No secrets are committed. The form endpoint and analytics settings come from the environment.
+- No secrets are committed. The built-in Formspree endpoint is public by design; analytics settings come from the environment.
 - The production CSP allows only same-origin scripts/styles, the form service, and the chosen analytics provider. There are no inline scripts or style attributes in the generated HTML. GSAP sets transform and opacity through the CSSOM, which does not add inline style attributes.
 - There is no database, login, server-side code, or user data storage in this repo.
 - Do not add passenger names, phone numbers, or booking details to build-log entries or screenshots.
