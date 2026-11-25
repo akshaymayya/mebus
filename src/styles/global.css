@@ -1492,3 +1492,364 @@ h2 {
     display: none;
   }
 }
+
+/* ---------------------------------------------
+   mebus marketing homepage
+   --------------------------------------------- */
+
+.marketing-home {
+  --home-forest: #173f35;
+  --home-forest-deep: #102f28;
+  --home-mint: #c8dfd2;
+  --home-paper: #f8f8f5;
+  --home-line: #dfe5df;
+}
+
+.home-hero {
+  position: relative;
+  display: grid;
+  min-height: min(780px, 100svh);
+  align-items: center;
+  overflow: hidden;
+  background: var(--home-forest-deep);
+  color: #fff;
+}
+
+.home-hero-inner {
+  width: min(calc(100% - 3rem), 1160px);
+  margin-inline: auto;
+  padding-block: 5rem;
+}
+
+.home-wordmark,
+.home-footer-brand {
+  color: inherit;
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: -0.06em;
+  text-decoration: none;
+}
+
+.home-wordmark span,
+.home-footer-brand span {
+  color: var(--home-mint);
+}
+
+.home-hero h1 {
+  max-width: 12ch;
+  margin: clamp(4rem, 12vh, 8rem) 0 2.5rem;
+  color: #fff;
+  font-family: var(--font-sans);
+  font-size: clamp(3.3rem, 9vw, 8.4rem);
+  font-weight: 550;
+  line-height: 0.99;
+  letter-spacing: -0.075em;
+}
+
+.home-hero-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding-bottom: 0.35rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.55);
+  color: #fff;
+  font-size: 0.9rem;
+  text-decoration: none;
+}
+
+.home-hero-link:hover {
+  border-color: var(--home-mint);
+  color: var(--home-mint);
+}
+
+.hero-index {
+  position: absolute;
+  right: max(1.5rem, calc((100vw - 1160px) / 2));
+  bottom: 2.5rem;
+  color: rgba(255, 255, 255, 0.65);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+}
+
+.home-section {
+  padding-block: clamp(5rem, 10vw, 9rem);
+}
+
+.home-problems {
+  background: var(--home-paper);
+}
+
+.home-manifesto {
+  background: #fff;
+}
+
+.home-connect {
+  background: var(--home-paper);
+}
+
+.home-section .container {
+  width: min(calc(100% - 3rem), 1160px);
+  margin-inline: auto;
+}
+
+.home-section .section-head {
+  grid-template-columns: minmax(10rem, 0.55fr) minmax(0, 1fr);
+  align-items: start;
+  gap: clamp(2rem, 7vw, 7rem);
+  margin-bottom: clamp(3rem, 7vw, 6rem);
+}
+
+.home-kicker {
+  margin: 0;
+  color: var(--home-forest);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  line-height: 1.6;
+  text-transform: uppercase;
+}
+
+.home-section .section-head h2 {
+  max-width: 17ch;
+  margin: 0 0 1.2rem;
+  font-family: var(--font-sans);
+  font-size: clamp(2.3rem, 5vw, 4.7rem);
+  font-weight: 500;
+  line-height: 1.04;
+  letter-spacing: -0.065em;
+}
+
+.home-section .section-intro {
+  max-width: 39rem;
+  margin: 0;
+  color: var(--muted);
+  font-size: clamp(1.02rem, 1.5vw, 1.2rem);
+  line-height: 1.65;
+}
+
+.problem-cards {
+  gap: 0 clamp(2rem, 5vw, 5rem);
+}
+
+.problem-cards li {
+  min-height: 13.5rem;
+  padding-top: 1.5rem;
+  border-color: var(--home-line);
+}
+
+.problem-cards .step-number,
+.manifesto-beliefs .principle-number {
+  color: var(--home-forest);
+}
+
+.problem-cards .step-title {
+  margin-bottom: 0.75rem;
+  font-family: var(--font-sans);
+  font-size: 1.18rem;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+}
+
+.problem-cards p {
+  max-width: 36ch;
+  font-size: 0.94rem;
+}
+
+.manifesto-intro {
+  max-width: 690px;
+  margin: 0 0 clamp(4rem, 8vw, 7rem) auto;
+}
+
+.manifesto-intro p {
+  margin-bottom: 1.2rem;
+  color: #474d49;
+  font-size: clamp(1.03rem, 1.45vw, 1.18rem);
+  line-height: 1.75;
+}
+
+.manifesto-intro p:last-child {
+  margin-top: 2rem;
+  color: var(--home-forest);
+  font-weight: 600;
+}
+
+.manifesto-beliefs {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 clamp(2rem, 7vw, 7rem);
+}
+
+.manifesto-beliefs li {
+  grid-template-columns: 2rem minmax(0, 1fr);
+  gap: 1rem;
+  padding-block: 1.7rem;
+  border-color: var(--home-line);
+}
+
+.manifesto-beliefs .principle-title {
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+.manifesto-beliefs .principle-copy {
+  max-width: 47ch;
+}
+
+.working-towards {
+  display: grid;
+  grid-template-columns: minmax(10rem, 0.55fr) minmax(0, 1fr);
+  gap: clamp(2rem, 7vw, 7rem);
+  margin-top: clamp(4rem, 9vw, 8rem);
+  padding-block: 2rem;
+  border-top: 1px solid var(--home-line);
+}
+
+.working-towards > div {
+  max-width: 690px;
+}
+
+.working-towards > div p {
+  margin-bottom: 1.2rem;
+  color: #474d49;
+  font-size: 1rem;
+  line-height: 1.75;
+}
+
+.working-towards > div p:first-child {
+  color: var(--ink);
+  font-size: clamp(1.35rem, 2.5vw, 2rem);
+  line-height: 1.35;
+  letter-spacing: -0.035em;
+}
+
+.home-principle-line {
+  max-width: 850px;
+  margin: clamp(4rem, 9vw, 8rem) auto 0;
+  color: var(--home-forest);
+  font-size: clamp(1.6rem, 3.8vw, 3.2rem);
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.05em;
+  text-align: center;
+}
+
+.home-attribution {
+  margin-top: 1.4rem;
+  color: var(--muted);
+  font-size: 0.86rem;
+  text-align: center;
+}
+
+.home-connect .contact-grid {
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1rem;
+}
+
+.home-connect .contact-form {
+  max-width: 44rem;
+}
+
+.home-connect .button-primary {
+  border-radius: 3px;
+  background: var(--home-forest);
+}
+
+.home-connect .button-primary:hover {
+  background: var(--home-forest-deep);
+}
+
+.home-connect .field input:focus-visible,
+.home-connect .field textarea:focus-visible {
+  outline-color: var(--home-forest);
+  border-color: var(--home-forest);
+}
+
+.home-footer {
+  background: var(--home-forest-deep);
+  color: #fff;
+}
+
+.home-footer-inner {
+  display: flex;
+  width: min(calc(100% - 3rem), 1160px);
+  min-height: 7rem;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin-inline: auto;
+}
+
+.home-footer-brand {
+  font-size: 1.35rem;
+}
+
+.home-footer-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 0.85rem;
+  text-decoration: none;
+}
+
+.home-footer-link:hover {
+  color: var(--home-mint);
+}
+
+@media (max-width: 900px) {
+  .home-section .section-head,
+  .working-towards {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .manifesto-beliefs {
+    grid-template-columns: 1fr;
+  }
+
+  .home-connect .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .home-hero {
+    min-height: 88svh;
+  }
+
+  .home-hero-inner,
+  .home-section .container,
+  .home-footer-inner {
+    width: min(calc(100% - 2.5rem), 1160px);
+  }
+
+  .home-hero h1 {
+    max-width: 10ch;
+    margin-top: 5rem;
+    font-size: clamp(3.25rem, 15vw, 5rem);
+  }
+
+  .hero-index {
+    right: 1.25rem;
+    bottom: 1.5rem;
+  }
+
+  .home-section {
+    padding-block: 4.5rem;
+  }
+
+  .problem-cards li {
+    min-height: 0;
+    padding-bottom: 0.5rem;
+  }
+
+  .home-principle-line {
+    text-align: left;
+  }
+
+  .home-attribution {
+    text-align: left;
+  }
+}

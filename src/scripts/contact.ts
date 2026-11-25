@@ -88,7 +88,7 @@ export function setupContactForm(): void {
 
     // A filled honeypot means a bot. Pretend it worked and send nothing.
     if ((honeypot?.value ?? "").length > 0 || botCheck?.checked) {
-      showSuccess("Thanks — your message is with me.");
+      showSuccess("Thanks — your message has been received.");
       form.reset();
       return;
     }
@@ -106,7 +106,7 @@ export function setupContactForm(): void {
 
     if (email.length < 1) {
       setInvalid(emailField, true);
-      showError("Please add your email so I can reply.");
+      showError("Please add your email so the team can reply.");
       emailField.focus();
       return;
     }
@@ -158,7 +158,7 @@ export function setupContactForm(): void {
       }
 
       showSuccess(
-        "Thanks — your message is with me. I’ll reply to your email.",
+        "Thanks — your message has been sent. The team can reply to your email.",
       );
       form.reset();
       updateCount();

@@ -10,6 +10,8 @@ interface Props {
   type?: "website" | "article";
   noindex?: boolean;
   publishedTime?: string;
+  showHeader?: boolean;
+  showFooter?: boolean;
 }
 
 const {
@@ -18,6 +20,8 @@ const {
   type = "website",
   noindex = false,
   publishedTime,
+  showHeader = true,
+  showFooter = true,
 } = Astro.props;
 
 const siteUrl = Astro.site ?? new URL("https://example.com");
@@ -84,11 +88,11 @@ const cloudflareToken = (
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
-    <Header />
+    {showHeader && <Header />}
     <main id="main" tabindex="-1">
       <slot />
     </main>
-    <Footer />
+    {showFooter ? <Footer /> : <slot name="page-footer" />}
     <script>
       import { setupMotion } from "../scripts/motion";
 

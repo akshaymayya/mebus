@@ -13,7 +13,7 @@ const configured = endpoint.length > 0;
         class="contact-form"
         method="POST"
         action={endpoint}
-        aria-label="Send a message or suggestion"
+        aria-label="Contact the mebus team"
         data-contact-form
         data-endpoint={endpoint}
       >
@@ -32,13 +32,14 @@ const configured = endpoint.length > 0;
         )}
 
         <div class="field">
-          <label for="name">Name <span class="optional">optional</span></label>
+          <label for="name">Name</label>
           <input
             id="name"
             name="name"
             type="text"
             maxlength="80"
             autocomplete="name"
+            required
           />
         </div>
 
@@ -105,11 +106,6 @@ const configured = endpoint.length > 0;
           hidden
         ></div>
 
-        <p class="form-privacy">
-          I read every message. I may share a message publicly only if I choose
-          to; otherwise it stays private. Please don’t include passenger names,
-          phone numbers, or booking details.
-        </p>
       </form>
     </div>
   )

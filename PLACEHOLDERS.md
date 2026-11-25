@@ -9,7 +9,7 @@ No visible `[FILL]` placeholders remain on the site. Search the repo for `[FILL`
 | LinkedIn profile URL | `src/data/site.ts` → `linkedin` | Add a full profile URL. The footer and the conditional connect section use it. Leave blank to hide it. |
 | Email address | `src/data/site.ts` → `email` | Add a real address. It is shown as a `mailto:` link. Leave blank to hide it. |
 
-The connect section and form are shown by default. `PUBLIC_FORM_ENDPOINT` can override the built-in Formspree endpoint.
+The connect section is shown on the homepage. The form is shown when `PUBLIC_FORM_ENDPOINT` is configured.
 
 ## Progress
 
@@ -22,7 +22,7 @@ The connect section and form are shown by default. `PUBLIC_FORM_ENDPOINT` can ov
 | Value | Where | What to do |
 | --- | --- | --- |
 | Production URL (currently `https://example.com`) | `SITE_URL` in `.env` and the host's environment | Set the final URL. It feeds canonical tags, Open Graph, RSS, the sitemap, and `robots.txt`. |
-| Form endpoint | `PUBLIC_FORM_ENDPOINT` | Optional override. The site ships with a built-in Formspree endpoint; set this only if you want a different form service. |
+| Form endpoint | `PUBLIC_FORM_ENDPOINT` | Set a Formspree form URL or Web3Forms endpoint to enable the contact form. |
 | Web3Forms access key | `PUBLIC_FORM_ACCESS_KEY` | Only for Web3Forms. It is public by design. |
 | Analytics domain/token | `PUBLIC_ANALYTICS_DOMAIN` or `PUBLIC_CLOUDFLARE_ANALYTICS_TOKEN` | Only if analytics is turned on. Leave `PUBLIC_ANALYTICS=off` to disable it. |
 

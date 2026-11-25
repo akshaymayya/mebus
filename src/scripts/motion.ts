@@ -105,6 +105,9 @@ export function setupMotion(): void {
         revealTargets.push(...Array.from(logList.children).filter(isElement));
       }
 
+      const homeFooter = document.querySelector<HTMLElement>("[data-home-footer]");
+      if (homeFooter) revealTargets.push(homeFooter);
+
       if (revealTargets.length === 0) return;
 
       gsap.set(revealTargets, { opacity: 0, y: 24 });
